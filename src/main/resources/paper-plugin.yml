@@ -1,0 +1,20 @@
+name: ScovilleChat
+description: $description
+prefix: ScovilleUI
+version: '${version}'
+
+main: dev.meluhdy.scovilleChat.ScovilleChat
+api-version: '1.21.11'
+load: POSTWORLD
+
+authors: [meluwudy]
+website: https://meluhdy.dev
+
+dependencies:
+  server:
+    Melodia:
+      load: BEFORE
+      required: true
+    ScovilleCore:
+      load: BEFORE
+      required: true
