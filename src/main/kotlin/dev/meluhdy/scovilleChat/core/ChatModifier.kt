@@ -1,16 +1,24 @@
 package dev.meluhdy.scovilleChat.core
 
-import net.kyori.adventure.text.TextComponent
 import org.bukkit.entity.Player
+import java.util.SortedMap
 
-data class ChatModifier(val priority: ChatPriority, val modifier: (Player, TextComponent) -> Unit) {
+abstract class ChatModifier(val modifiers: ChatModifiers) {
 
-    enum class ChatPriority(val priority: Int) {
-        LOWEST  (0),
-        LOW     (1),
-        NORMAL  (2),
-        HIGH    (3),
-        HIGHEST (4)
+    enum class ChatModifiers {
+        TAG,
+        RANKUP,
+        NICKNAME,
+        SIDE_RANKUP,
+        STAR,
+        ARROWS,
+        CHAT_COLOR
+    }
+
+    abstract fun getString(player: Player): String
+
+    fun apply(player: Player, message: SortedMap<ChatModifiers, String>) {
+        message[this.modifiers] = this.getString(player)
     }
 
 }
