@@ -51,12 +51,15 @@ object MessageListener : Listener {
 
         val messageArray = sortedMapOf<ChatModifier.ChatModifiers, String>()
 
-        listOf(
+        val modifiers: List<ChatModifier?> = listOf(
             settings.nickname,
             ArrowsModifier,
             RankModifier,
-            StaffModifier
-        ).forEach { modifier ->
+            StaffModifier,
+            settings.chatColor
+        )
+
+        modifiers.forEach { modifier: ChatModifier? ->
             modifier?.apply(player, messageArray)
         }
 
