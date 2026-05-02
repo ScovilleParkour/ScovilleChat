@@ -6,6 +6,7 @@ import dev.meluhdy.melodia.manager.MelodiaSavingManager
 import dev.meluhdy.melodia.utils.ConsoleLogger
 import dev.meluhdy.melodia.utils.LoggingUtils
 import dev.meluhdy.melodia.utils.TranslationFolder
+import dev.meluhdy.scovilleChat.core.AnnouncementManager
 import dev.meluhdy.scovilleChat.core.player.PlayerMessageSettingsManager
 import dev.meluhdy.scovilleChat.listener.MessageListener
 import org.bukkit.event.Listener
@@ -36,5 +37,11 @@ class ScovilleChat : MelodiaPlugin() {
     override val savingManagers: Array<MelodiaSavingManager<*>> = arrayOf(
         PlayerMessageSettingsManager
     )
+
+    override fun onEnable() {
+        super.onEnable()
+
+        AnnouncementManager.startTask()
+    }
 
 }
