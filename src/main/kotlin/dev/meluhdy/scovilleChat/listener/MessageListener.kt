@@ -8,6 +8,7 @@ import dev.meluhdy.scovilleChat.core.modifiers.ArrowsModifier
 import dev.meluhdy.scovilleChat.core.modifiers.ConnectionState
 import dev.meluhdy.scovilleChat.core.modifiers.RankModifier
 import dev.meluhdy.scovilleChat.core.modifiers.StaffModifier
+import dev.meluhdy.scovilleChat.core.modifiers.TagModifier
 import dev.meluhdy.scovilleChat.core.player.PlayerMessageSettingsManager
 import io.papermc.paper.event.player.AsyncChatEvent
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
@@ -47,11 +48,12 @@ object MessageListener : Listener {
         val player = event.player
         val settings = PlayerMessageSettingsManager.getOrCreate(player)
 
-        // Message Order: Tag, Rankup, Nickname, Side Rankup, Star, Arrows, Chat Color, Message
+        // TODO: Side Rankup
 
         val messageArray = sortedMapOf<ChatModifier.ChatModifiers, String>()
 
         val modifiers: List<ChatModifier?> = listOf(
+            TagModifier(settings.tag),
             settings.nickname,
             ArrowsModifier,
             RankModifier,

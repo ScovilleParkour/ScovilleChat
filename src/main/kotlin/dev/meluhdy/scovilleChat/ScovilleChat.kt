@@ -8,6 +8,7 @@ import dev.meluhdy.melodia.utils.LoggingUtils
 import dev.meluhdy.melodia.utils.TranslationFolder
 import dev.meluhdy.scovilleChat.core.AnnouncementManager
 import dev.meluhdy.scovilleChat.core.player.PlayerMessageSettingsManager
+import dev.meluhdy.scovilleChat.core.tag.TagManager
 import dev.meluhdy.scovilleChat.listener.MessageListener
 import org.bukkit.event.Listener
 import java.util.Locale
@@ -35,7 +36,8 @@ class ScovilleChat : MelodiaPlugin() {
     override val translationFolder: TranslationFolder = TranslationFolder("lang", Locale.of("en"))
     override val logger: ConsoleLogger = ConsoleLogger("ScovilleChat", LoggingUtils.ConsoleLevel.DEBUG)
     override val savingManagers: Array<MelodiaSavingManager<*>> = arrayOf(
-        PlayerMessageSettingsManager
+        PlayerMessageSettingsManager,
+        TagManager
     )
 
     override fun onEnable() {
