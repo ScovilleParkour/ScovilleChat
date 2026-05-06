@@ -16,6 +16,6 @@ data class TagModifier(val tagId: UUID?) : ChatModifier(ChatModifiers.TAG) {
         }
 
         val tag = TagManager.get(tagId) ?: return ""
-        return "${tag.tag} ".legacyToMiniMessage()
+        return "${tag.tag.trim()}&r ".legacyToMiniMessage()
     }
 }
