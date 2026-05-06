@@ -1,7 +1,7 @@
-package dev.meluhdy.scovilleChat.core.player
+package dev.meluhdy.scovilleCosmetics.core.player
 
 import dev.meluhdy.melodia.manager.MelodiaSavingManager
-import dev.meluhdy.scovilleChat.ScovilleChat
+import dev.meluhdy.scovilleCosmetics.ScovilleCosmetics
 import kotlinx.serialization.json.JsonElement
 import org.bukkit.entity.Player
 import java.io.File
@@ -9,7 +9,7 @@ import java.io.File
 object PlayerMessageSettingsManager : MelodiaSavingManager<PlayerMessageSettings>() {
 
     val baseFolder
-        get() = "${ScovilleChat.plugin.dataFolder}${File.separator}players"
+        get() = "${ScovilleCosmetics.plugin.dataFolder}${File.separator}players"
 
     fun get(p: Player): PlayerMessageSettings? = get(p.uniqueId)
 

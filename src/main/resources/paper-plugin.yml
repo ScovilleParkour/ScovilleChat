@@ -1,9 +1,9 @@
-name: ScovilleChat
+name: ScovilleCosmetics
 description: $description
-prefix: ScovilleUI
+prefix: ScovilleCosmetics
 version: '${version}'
 
-main: dev.meluhdy.scovilleChat.ScovilleChat
+main: dev.meluhdy.scovilleCosmetics.ScovilleCosmetics
 api-version: '1.21.11'
 load: POSTWORLD
 

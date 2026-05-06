@@ -1,4 +1,4 @@
-package dev.meluhdy.scovilleChat.core.tag
+package dev.meluhdy.scovilleCosmetics.core.tag
 
 import dev.meluhdy.melodia.misc.serialization.MelodiaSerializer
 import dev.meluhdy.melodia.misc.serialization.SerializerElement

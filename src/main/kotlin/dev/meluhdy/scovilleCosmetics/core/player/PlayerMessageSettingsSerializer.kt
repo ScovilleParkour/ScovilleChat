@@ -1,10 +1,10 @@
-package dev.meluhdy.scovilleChat.core.player
+package dev.meluhdy.scovilleCosmetics.core.player
 
 import dev.meluhdy.melodia.misc.serialization.MelodiaSerializer
 import dev.meluhdy.melodia.misc.serialization.SerializerElement
-import dev.meluhdy.scovilleChat.core.modifiers.ChatColorModifier
-import dev.meluhdy.scovilleChat.core.modifiers.ConnectionMessages
-import dev.meluhdy.scovilleChat.core.modifiers.NicknameModifier
+import dev.meluhdy.scovilleCosmetics.core.modifiers.ChatColorModifier
+import dev.meluhdy.scovilleCosmetics.core.modifiers.ConnectionMessages
+import dev.meluhdy.scovilleCosmetics.core.modifiers.NicknameModifier
 import kotlinx.serialization.builtins.nullable
 import kotlinx.serialization.builtins.serializer
 import java.util.UUID

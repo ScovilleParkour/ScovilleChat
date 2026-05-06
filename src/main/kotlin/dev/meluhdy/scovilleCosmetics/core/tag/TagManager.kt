@@ -1,14 +1,14 @@
-package dev.meluhdy.scovilleChat.core.tag
+package dev.meluhdy.scovilleCosmetics.core.tag
 
 import dev.meluhdy.melodia.manager.MelodiaSavingManager
-import dev.meluhdy.scovilleChat.ScovilleChat
+import dev.meluhdy.scovilleCosmetics.ScovilleCosmetics
 import kotlinx.serialization.json.JsonElement
 import java.io.File
 
 object TagManager : MelodiaSavingManager<ChatTag>() {
 
     val baseFolder
-        get() = "${ScovilleChat.plugin.dataFolder}${File.separator}tags"
+        get() = "${ScovilleCosmetics.plugin.dataFolder}${File.separator}tags"
 
     override fun getFile(obj: ChatTag): File = File(baseFolder, "${obj.uuid}.json")
 

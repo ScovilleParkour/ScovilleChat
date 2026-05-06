@@ -1,4 +1,4 @@
-package dev.meluhdy.scovilleChat.core.tag
+package dev.meluhdy.scovilleCosmetics.core.tag
 
 import dev.meluhdy.melodia.manager.MelodiaItem
 import java.util.UUID
@@ -30,9 +30,5 @@ class ChatTag(val id: String, val tag: String, val type: TagType, uuid: UUID = U
 
     val permission: String
         get() = "tag.${type.id}.$id"
-
-    override fun equals(other: Any?): Boolean {
-        return other is ChatTag && other.id == id
-    }
 
 }

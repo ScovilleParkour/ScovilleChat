@@ -1,15 +1,15 @@
-package dev.meluhdy.scovilleChat.listener
+package dev.meluhdy.scovilleCosmetics.listener
 
 import dev.meluhdy.melodia.utils.TextUtils
 import dev.meluhdy.melodia.utils.fromMiniMessage
-import dev.meluhdy.scovilleChat.ScovilleChat
-import dev.meluhdy.scovilleChat.core.ChatModifier
-import dev.meluhdy.scovilleChat.core.modifiers.ArrowsModifier
-import dev.meluhdy.scovilleChat.core.modifiers.ConnectionState
-import dev.meluhdy.scovilleChat.core.modifiers.RankModifier
-import dev.meluhdy.scovilleChat.core.modifiers.StaffModifier
-import dev.meluhdy.scovilleChat.core.modifiers.TagModifier
-import dev.meluhdy.scovilleChat.core.player.PlayerMessageSettingsManager
+import dev.meluhdy.scovilleCosmetics.ScovilleCosmetics
+import dev.meluhdy.scovilleCosmetics.core.ChatModifier
+import dev.meluhdy.scovilleCosmetics.core.modifiers.ArrowsModifier
+import dev.meluhdy.scovilleCosmetics.core.modifiers.ConnectionState
+import dev.meluhdy.scovilleCosmetics.core.modifiers.RankModifier
+import dev.meluhdy.scovilleCosmetics.core.modifiers.StaffModifier
+import dev.meluhdy.scovilleCosmetics.core.modifiers.TagModifier
+import dev.meluhdy.scovilleCosmetics.core.player.PlayerMessageSettingsManager
 import io.papermc.paper.event.player.AsyncChatEvent
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import org.bukkit.Bukkit
@@ -23,9 +23,9 @@ import org.bukkit.event.player.PlayerQuitEvent
 object MessageListener : Listener {
 
     fun sendConnectionMessage(p: Player, state: ConnectionState) {
-        Bukkit.getScheduler().scheduleSyncDelayedTask(ScovilleChat.plugin, {
+        Bukkit.getScheduler().scheduleSyncDelayedTask(ScovilleCosmetics.plugin, {
             val playerSettings = PlayerMessageSettingsManager.getOrCreate(p)
-            TextUtils.broadcastChat(ScovilleChat.plugin, playerSettings.connectionMessage.getTranslationString(
+            TextUtils.broadcastChat(ScovilleCosmetics.plugin, playerSettings.connectionMessage.getTranslationString(
                 state), p.name)
         }, 5L)
     }

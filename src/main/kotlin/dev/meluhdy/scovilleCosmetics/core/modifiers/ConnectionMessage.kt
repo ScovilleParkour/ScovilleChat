@@ -1,4 +1,4 @@
-package dev.meluhdy.scovilleChat.core.modifiers
+package dev.meluhdy.scovilleCosmetics.core.modifiers
 
 enum class ConnectionState(val value: String) {
     JOIN    ("join"),

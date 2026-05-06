@@ -1,11 +1,11 @@
-package dev.meluhdy.scovilleChat.core.player
+package dev.meluhdy.scovilleCosmetics.core.player
 
 import dev.meluhdy.melodia.manager.MelodiaItem
-import dev.meluhdy.scovilleChat.core.modifiers.ChatColorModifier
-import dev.meluhdy.scovilleChat.core.modifiers.ConnectionMessages
-import dev.meluhdy.scovilleChat.core.modifiers.NicknameModifier
-import dev.meluhdy.scovilleChat.core.tag.ChatTag
-import dev.meluhdy.scovilleChat.core.tag.TagManager
+import dev.meluhdy.scovilleCosmetics.core.modifiers.ChatColorModifier
+import dev.meluhdy.scovilleCosmetics.core.modifiers.ConnectionMessages
+import dev.meluhdy.scovilleCosmetics.core.modifiers.NicknameModifier
+import dev.meluhdy.scovilleCosmetics.core.tag.ChatTag
+import dev.meluhdy.scovilleCosmetics.core.tag.TagManager
 import org.bukkit.entity.Player
 import java.util.UUID
 

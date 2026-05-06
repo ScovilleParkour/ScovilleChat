@@ -1,10 +1,8 @@
-package dev.meluhdy.scovilleChat.core.modifiers
+package dev.meluhdy.scovilleCosmetics.core.modifiers
 
-import dev.meluhdy.melodia.utils.fromLegacyMessage
 import dev.meluhdy.melodia.utils.legacyToMiniMessage
-import dev.meluhdy.scovilleChat.core.ChatModifier
-import dev.meluhdy.scovilleChat.core.ChatModifier.ChatModifiers
-import dev.meluhdy.scovilleChat.core.tag.TagManager
+import dev.meluhdy.scovilleCosmetics.core.ChatModifier
+import dev.meluhdy.scovilleCosmetics.core.tag.TagManager
 import org.bukkit.entity.Player
 import java.util.UUID
 

@@ -1,6 +1,6 @@
-package dev.meluhdy.scovilleChat.core.modifiers
+package dev.meluhdy.scovilleCosmetics.core.modifiers
 
-import dev.meluhdy.scovilleChat.core.ChatModifier
+import dev.meluhdy.scovilleCosmetics.core.ChatModifier
 import org.bukkit.entity.Player
 
 data class NicknameModifier(val nickname: String?) : ChatModifier(ChatModifiers.NICKNAME) {

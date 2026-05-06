@@ -1,4 +1,4 @@
-package dev.meluhdy.scovilleChat.core
+package dev.meluhdy.scovilleCosmetics.core
 
 import org.bukkit.entity.Player
 import java.util.SortedMap

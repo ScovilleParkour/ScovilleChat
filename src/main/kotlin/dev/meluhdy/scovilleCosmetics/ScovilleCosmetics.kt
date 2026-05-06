@@ -1,4 +1,4 @@
-package dev.meluhdy.scovilleChat
+package dev.meluhdy.scovilleCosmetics
 
 import dev.meluhdy.melodia.MelodiaPlugin
 import dev.meluhdy.melodia.command.MelodiaCommand
@@ -6,14 +6,14 @@ import dev.meluhdy.melodia.manager.MelodiaSavingManager
 import dev.meluhdy.melodia.utils.ConsoleLogger
 import dev.meluhdy.melodia.utils.LoggingUtils
 import dev.meluhdy.melodia.utils.TranslationFolder
-import dev.meluhdy.scovilleChat.core.AnnouncementManager
-import dev.meluhdy.scovilleChat.core.player.PlayerMessageSettingsManager
-import dev.meluhdy.scovilleChat.core.tag.TagManager
-import dev.meluhdy.scovilleChat.listener.MessageListener
+import dev.meluhdy.scovilleCosmetics.core.AnnouncementManager
+import dev.meluhdy.scovilleCosmetics.core.player.PlayerMessageSettingsManager
+import dev.meluhdy.scovilleCosmetics.core.tag.TagManager
+import dev.meluhdy.scovilleCosmetics.listener.MessageListener
 import org.bukkit.event.Listener
 import java.util.Locale
 
-class ScovilleChat : MelodiaPlugin() {
+class ScovilleCosmetics : MelodiaPlugin() {
 
     companion object {
         lateinit var plugin: MelodiaPlugin
@@ -34,7 +34,7 @@ class ScovilleChat : MelodiaPlugin() {
         MessageListener
     )
     override val translationFolder: TranslationFolder = TranslationFolder("lang", Locale.of("en"))
-    override val logger: ConsoleLogger = ConsoleLogger("ScovilleChat", LoggingUtils.ConsoleLevel.DEBUG)
+    override val logger: ConsoleLogger = ConsoleLogger("ScovilleCosmetics", LoggingUtils.ConsoleLevel.DEBUG)
     override val savingManagers: Array<MelodiaSavingManager<*>> = arrayOf(
         PlayerMessageSettingsManager,
         TagManager
