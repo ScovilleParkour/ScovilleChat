@@ -1,6 +1,6 @@
-package dev.meluhdy.scovilleCosmetics.core.modifiers
+package dev.meluhdy.scovilleCosmetics.core.chat.modifiers
 
-import dev.meluhdy.scovilleCosmetics.core.ChatModifier
+import dev.meluhdy.scovilleCosmetics.core.chat.ChatModifier
 import org.bukkit.entity.Player
 
 class ChatColorModifier(val chatColor: ChatColor) : ChatModifier(ChatModifiers.CHAT_COLOR) {

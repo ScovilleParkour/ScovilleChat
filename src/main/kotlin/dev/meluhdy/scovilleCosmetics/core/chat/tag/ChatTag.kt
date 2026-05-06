@@ -1,4 +1,4 @@
-package dev.meluhdy.scovilleCosmetics.core.tag
+package dev.meluhdy.scovilleCosmetics.core.chat.tag
 
 import dev.meluhdy.melodia.manager.MelodiaItem
 import java.util.UUID

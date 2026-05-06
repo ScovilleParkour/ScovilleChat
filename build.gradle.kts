@@ -18,6 +18,9 @@ repositories {
     maven("https://oss.sonatype.org/content/groups/public/") {
         name = "sonatype"
     }
+    maven("https://repo.onarandombox.com/content/groups/public/") {
+        name = "onarandombox"
+    }
 }
 
 dependencies {
@@ -25,6 +28,7 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
     multiModule.tryMultiModule(":Melodia", "dev.meluhdy:melodia:1.0-SNAPSHOT")
     multiModule.tryMultiModule(":ScovilleCore", "dev.meluhdy:scoville-core:1.0-SNAPSHOT")
+    compileOnly("org.mvplugins.multiverse.core:multiverse-code:5.6.1")
 }
 
 val targetJavaVersion = 25

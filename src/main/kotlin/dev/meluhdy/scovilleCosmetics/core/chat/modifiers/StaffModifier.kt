@@ -1,7 +1,7 @@
-package dev.meluhdy.scovilleCosmetics.core.modifiers
+package dev.meluhdy.scovilleCosmetics.core.chat.modifiers
 
 import dev.meluhdy.scoville.misc.track.StaffTrack
-import dev.meluhdy.scovilleCosmetics.core.ChatModifier
+import dev.meluhdy.scovilleCosmetics.core.chat.ChatModifier
 import org.bukkit.entity.Player
 
 object StaffModifier : ChatModifier(ChatModifiers.STAR) {

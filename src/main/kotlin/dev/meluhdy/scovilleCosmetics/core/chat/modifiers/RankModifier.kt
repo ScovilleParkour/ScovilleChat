@@ -1,9 +1,9 @@
-package dev.meluhdy.scovilleCosmetics.core.modifiers
+package dev.meluhdy.scovilleCosmetics.core.chat.modifiers
 
 import dev.meluhdy.scoville.core.course.courses.RankupCourse.Rank
 import dev.meluhdy.scoville.core.parkourer.ParkourerManager
 import dev.meluhdy.scoville.misc.track.RankTrack
-import dev.meluhdy.scovilleCosmetics.core.ChatModifier
+import dev.meluhdy.scovilleCosmetics.core.chat.ChatModifier
 import org.bukkit.entity.Player
 
 object RankModifier : ChatModifier(ChatModifiers.RANKUP) {

@@ -3,13 +3,13 @@ package dev.meluhdy.scovilleCosmetics.listener
 import dev.meluhdy.melodia.utils.TextUtils
 import dev.meluhdy.melodia.utils.fromMiniMessage
 import dev.meluhdy.scovilleCosmetics.ScovilleCosmetics
-import dev.meluhdy.scovilleCosmetics.core.ChatModifier
-import dev.meluhdy.scovilleCosmetics.core.modifiers.ArrowsModifier
-import dev.meluhdy.scovilleCosmetics.core.modifiers.ConnectionState
-import dev.meluhdy.scovilleCosmetics.core.modifiers.RankModifier
-import dev.meluhdy.scovilleCosmetics.core.modifiers.StaffModifier
-import dev.meluhdy.scovilleCosmetics.core.modifiers.TagModifier
-import dev.meluhdy.scovilleCosmetics.core.player.PlayerMessageSettingsManager
+import dev.meluhdy.scovilleCosmetics.core.chat.ChatModifier
+import dev.meluhdy.scovilleCosmetics.core.chat.modifiers.ArrowsModifier
+import dev.meluhdy.scovilleCosmetics.core.chat.modifiers.ConnectionState
+import dev.meluhdy.scovilleCosmetics.core.chat.modifiers.RankModifier
+import dev.meluhdy.scovilleCosmetics.core.chat.modifiers.StaffModifier
+import dev.meluhdy.scovilleCosmetics.core.chat.modifiers.TagModifier
+import dev.meluhdy.scovilleCosmetics.core.player.PlayerCosmeticsManager
 import io.papermc.paper.event.player.AsyncChatEvent
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import org.bukkit.Bukkit
@@ -24,7 +24,7 @@ object MessageListener : Listener {
 
     fun sendConnectionMessage(p: Player, state: ConnectionState) {
         Bukkit.getScheduler().scheduleSyncDelayedTask(ScovilleCosmetics.plugin, {
-            val playerSettings = PlayerMessageSettingsManager.getOrCreate(p)
+            val playerSettings = PlayerCosmeticsManager.getOrCreate(p)
             TextUtils.broadcastChat(ScovilleCosmetics.plugin, playerSettings.connectionMessage.getTranslationString(
                 state), p.name)
         }, 5L)
@@ -46,7 +46,7 @@ object MessageListener : Listener {
     fun handleMessage(event: AsyncChatEvent) {
         val message = PlainTextComponentSerializer.plainText().serialize(event.originalMessage())
         val player = event.player
-        val settings = PlayerMessageSettingsManager.getOrCreate(player)
+        val settings = PlayerCosmeticsManager.getOrCreate(player)
 
         // TODO: Side Rankup
 

@@ -6,9 +6,9 @@ import dev.meluhdy.melodia.manager.MelodiaSavingManager
 import dev.meluhdy.melodia.utils.ConsoleLogger
 import dev.meluhdy.melodia.utils.LoggingUtils
 import dev.meluhdy.melodia.utils.TranslationFolder
-import dev.meluhdy.scovilleCosmetics.core.AnnouncementManager
-import dev.meluhdy.scovilleCosmetics.core.player.PlayerMessageSettingsManager
-import dev.meluhdy.scovilleCosmetics.core.tag.TagManager
+import dev.meluhdy.scovilleCosmetics.core.chat.AnnouncementManager
+import dev.meluhdy.scovilleCosmetics.core.player.PlayerCosmeticsManager
+import dev.meluhdy.scovilleCosmetics.core.chat.tag.TagManager
 import dev.meluhdy.scovilleCosmetics.listener.MessageListener
 import org.bukkit.event.Listener
 import java.util.Locale
@@ -36,7 +36,7 @@ class ScovilleCosmetics : MelodiaPlugin() {
     override val translationFolder: TranslationFolder = TranslationFolder("lang", Locale.of("en"))
     override val logger: ConsoleLogger = ConsoleLogger("ScovilleCosmetics", LoggingUtils.ConsoleLevel.DEBUG)
     override val savingManagers: Array<MelodiaSavingManager<*>> = arrayOf(
-        PlayerMessageSettingsManager,
+        PlayerCosmeticsManager,
         TagManager
     )
 

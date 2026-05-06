@@ -1,4 +1,4 @@
-package dev.meluhdy.scovilleCosmetics.core
+package dev.meluhdy.scovilleCosmetics.core.chat
 
 import dev.meluhdy.melodia.utils.TextUtils
 import dev.meluhdy.melodia.utils.fromLegacyMessage

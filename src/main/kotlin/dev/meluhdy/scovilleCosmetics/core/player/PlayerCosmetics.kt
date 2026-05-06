@@ -1,15 +1,15 @@
 package dev.meluhdy.scovilleCosmetics.core.player
 
 import dev.meluhdy.melodia.manager.MelodiaItem
-import dev.meluhdy.scovilleCosmetics.core.modifiers.ChatColorModifier
-import dev.meluhdy.scovilleCosmetics.core.modifiers.ConnectionMessages
-import dev.meluhdy.scovilleCosmetics.core.modifiers.NicknameModifier
-import dev.meluhdy.scovilleCosmetics.core.tag.ChatTag
-import dev.meluhdy.scovilleCosmetics.core.tag.TagManager
+import dev.meluhdy.scovilleCosmetics.core.chat.modifiers.ChatColorModifier
+import dev.meluhdy.scovilleCosmetics.core.chat.modifiers.ConnectionMessages
+import dev.meluhdy.scovilleCosmetics.core.chat.modifiers.NicknameModifier
+import dev.meluhdy.scovilleCosmetics.core.chat.tag.ChatTag
+import dev.meluhdy.scovilleCosmetics.core.chat.tag.TagManager
 import org.bukkit.entity.Player
 import java.util.UUID
 
-class PlayerMessageSettings(uuid: UUID) : MelodiaItem(uuid) {
+class PlayerCosmetics(uuid: UUID) : MelodiaItem(uuid) {
 
     constructor(p: Player) : this(p.uniqueId)
 
