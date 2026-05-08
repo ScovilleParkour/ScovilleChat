@@ -28,7 +28,7 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
     multiModule.tryMultiModule(":Melodia", "dev.meluhdy:melodia:1.0-SNAPSHOT")
     multiModule.tryMultiModule(":ScovilleCore", "dev.meluhdy:scoville-core:1.0-SNAPSHOT")
-    compileOnly("org.mvplugins.multiverse.core:multiverse-code:5.6.1")
+    compileOnly("org.mvplugins.multiverse.core:multiverse-core:5.6.1")
 }
 
 val targetJavaVersion = 25
