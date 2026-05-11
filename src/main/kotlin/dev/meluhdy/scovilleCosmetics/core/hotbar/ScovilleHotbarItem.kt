@@ -5,7 +5,6 @@ import dev.meluhdy.melodia.utils.ItemUtils
 import dev.meluhdy.melodia.utils.TextUtils
 import dev.meluhdy.melodia.utils.fromLegacyMessage
 import dev.meluhdy.scovilleCosmetics.ScovilleCosmetics
-import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 

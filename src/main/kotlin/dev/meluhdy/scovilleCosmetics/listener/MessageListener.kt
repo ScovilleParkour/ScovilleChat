@@ -53,7 +53,7 @@ object MessageListener : Listener {
         val messageArray = sortedMapOf<ChatModifier.ChatModifiers, String>()
 
         val modifiers: List<ChatModifier?> = listOf(
-            TagModifier(settings.tag),
+            TagModifier(settings.getTag()?.uuid),
             settings.nickname,
             ArrowsModifier,
             RankModifier,
