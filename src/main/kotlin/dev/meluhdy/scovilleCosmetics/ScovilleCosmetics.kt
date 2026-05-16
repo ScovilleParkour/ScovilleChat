@@ -7,6 +7,7 @@ import dev.meluhdy.melodia.utils.ConsoleLogger
 import dev.meluhdy.melodia.utils.LoggingUtils
 import dev.meluhdy.melodia.utils.TranslationFolder
 import dev.meluhdy.scovilleCosmetics.core.chat.AnnouncementManager
+import dev.meluhdy.scovilleCosmetics.core.chat.tag.TagManager
 import dev.meluhdy.scovilleCosmetics.core.player.PlayerCosmeticsManager
 import dev.meluhdy.scovilleCosmetics.listener.HotbarListener
 import dev.meluhdy.scovilleCosmetics.listener.MessageListener
@@ -37,7 +38,8 @@ class ScovilleCosmetics : MelodiaPlugin() {
     override val translationFolder: TranslationFolder = TranslationFolder("lang", Locale.of("en"))
     override val logger: ConsoleLogger = ConsoleLogger("ScovilleCosmetics", LoggingUtils.ConsoleLevel.DEBUG)
     override val savingManagers: Array<MelodiaSavingManager<*>> = arrayOf(
-        PlayerCosmeticsManager
+        PlayerCosmeticsManager,
+        TagManager
     )
 
     override fun onEnable() {
