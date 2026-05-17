@@ -16,7 +16,6 @@ object PlayerCosmeticsSerializer : MelodiaSerializer<PlayerCosmetics>() {
     class PlayerCosmeticsBuilder : Builder<PlayerCosmetics>() {
 
         var connectionMessage: ConnectionMessages = ConnectionMessages.DEFAULT
-
         var nickname: NicknameModifier = NicknameModifier(null)
         var chatColor: ChatColorModifier = ChatColorModifier(ChatColorModifier.ChatColor.WHITE)
         var tag: PlayerCosmetics.TagSelector? = null
@@ -26,6 +25,7 @@ object PlayerCosmeticsSerializer : MelodiaSerializer<PlayerCosmetics>() {
             out.nickname = nickname
             out.connectionMessage = connectionMessage
             out.tag = tag
+            out.chatColor = chatColor
             return out
         }
 

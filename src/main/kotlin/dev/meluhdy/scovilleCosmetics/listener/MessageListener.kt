@@ -1,7 +1,9 @@
 package dev.meluhdy.scovilleCosmetics.listener
 
 import dev.meluhdy.melodia.utils.TextUtils
+import dev.meluhdy.melodia.utils.fromLegacyMessage
 import dev.meluhdy.melodia.utils.fromMiniMessage
+import dev.meluhdy.melodia.utils.toMiniMessage
 import dev.meluhdy.scovilleCosmetics.ScovilleCosmetics
 import dev.meluhdy.scovilleCosmetics.core.chat.ChatModifier
 import dev.meluhdy.scovilleCosmetics.core.chat.modifiers.ArrowsModifier
@@ -11,6 +13,7 @@ import dev.meluhdy.scovilleCosmetics.core.chat.modifiers.StaffModifier
 import dev.meluhdy.scovilleCosmetics.core.chat.modifiers.TagModifier
 import dev.meluhdy.scovilleCosmetics.core.player.PlayerCosmeticsManager
 import io.papermc.paper.event.player.AsyncChatEvent
+import net.kyori.adventure.text.minimessage.MiniMessage
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
@@ -19,8 +22,16 @@ import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerQuitEvent
+import java.nio.charset.StandardCharsets
+import java.util.Properties
 
 object MessageListener : Listener {
+
+    private val emotes: Properties = Properties()
+
+    init {
+        this.emotes.load(ScovilleCosmetics.plugin.getResource("emotes.properties")?.reader(StandardCharsets.UTF_8))
+    }
 
     fun sendConnectionMessage(p: Player, state: ConnectionState) {
         Bukkit.getScheduler().scheduleSyncDelayedTask(ScovilleCosmetics.plugin, {
@@ -42,11 +53,14 @@ object MessageListener : Listener {
         this.sendConnectionMessage(event.player, ConnectionState.LEAVE)
     }
 
-    @EventHandler(priority = EventPriority.LOWEST)
+    @EventHandler(priority = EventPriority.LOW)
     fun handleMessage(event: AsyncChatEvent) {
-        val message = PlainTextComponentSerializer.plainText().serialize(event.originalMessage())
+        ScovilleCosmetics.plugin.logger.debug("Message: ${event.message().toMiniMessage()}")
+        var message = MiniMessage.miniMessage().escapeTags(PlainTextComponentSerializer.plainText().serialize(event.originalMessage()))
         val player = event.player
         val settings = PlayerCosmeticsManager.getOrCreate(player)
+
+        emotes.forEach { message = message.replace(":${it.key}:", "${it.value}&${settings.chatColor.chatColor.char}".fromLegacyMessage().toMiniMessage()) }
 
         // TODO: Side Rankup
 
@@ -66,7 +80,8 @@ object MessageListener : Listener {
         }
 
         val preamble = messageArray.values.joinToString("")
-        TextUtils.broadcastChat(preamble + message)
+        event.message(message.fromMiniMessage())
+        TextUtils.broadcastChat((preamble + message).fromMiniMessage())
         event.isCancelled = true
     }
 
