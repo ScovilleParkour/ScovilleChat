@@ -27,7 +27,7 @@ object ShinyTagSerializer : ChatTagSerializer<ShinyTag>() {
 
     }
 
-    override val builder: Builder<ShinyTag> = ShinyTagBuilder()
+    override fun getBuilder(): Builder<ShinyTag> = ShinyTagBuilder()
 
     override val steps: Array<SerializerElement<*, ShinyTag>> = arrayOf(
         SerializerElement("course", String.serializer(), { it.uuid.toString() }, { element, builder -> (builder as ShinyTagBuilder).course = UUID.fromString(element) })

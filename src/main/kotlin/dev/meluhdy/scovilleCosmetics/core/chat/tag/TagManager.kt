@@ -1,6 +1,8 @@
 package dev.meluhdy.scovilleCosmetics.core.chat.tag
 
 import dev.meluhdy.melodia.manager.MelodiaSavingManager
+import dev.meluhdy.melodia.utils.FileUtils
+import dev.meluhdy.scoville.Scoville
 import dev.meluhdy.scoville.core.course.CourseManager
 import dev.meluhdy.scovilleCosmetics.ScovilleCosmetics
 import dev.meluhdy.scovilleCosmetics.core.chat.tag.type.CourseTag
@@ -24,6 +26,8 @@ import org.bukkit.Bukkit
 import java.io.File
 
 object TagManager : MelodiaSavingManager<ChatTag>() {
+
+    private val COURSE_REGEX = Regex("[^a-z _]")
 
     init {
         add(RankTag("rank_owner", "&7«&f&lOwner&7»", "tag.rank.owner.desc"))
@@ -51,8 +55,8 @@ object TagManager : MelodiaSavingManager<ChatTag>() {
 
     fun get(tagId: String) = get { it.id == tagId }
 
-    val baseFolder
-        get() = "${ScovilleCosmetics.plugin.dataFolder}${File.separator}tags"
+    val baseFolder: String
+        get() = FileUtils.getFile(ScovilleCosmetics.plugin, "tags").absolutePath
 
     override fun load() {
         super.load()
@@ -62,7 +66,7 @@ object TagManager : MelodiaSavingManager<ChatTag>() {
         CourseManager.getAll().forEach {
             ScovilleCosmetics.plugin.logger.debug("Adding tag for course ${it.uuid}")
             var name = (it.name ?: it.uuid.toString()).lowercase()
-            name = Regex("[^a-z _]").replace(name, "").replace(" ", "_")
+            name = COURSE_REGEX.replace(name, "").replace(" ", "_")
 
             add(ShinyTag("s_$name", "&6«&e⁕${it.coloredName ?: "UNKNOWN"}&e⁕&6»", it.uuid))
             add(RecordTag("wr_$name", "&8«${it.coloredName} &6♚&8»", it.uuid))

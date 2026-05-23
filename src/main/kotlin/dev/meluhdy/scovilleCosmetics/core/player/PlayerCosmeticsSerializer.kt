@@ -31,7 +31,8 @@ object PlayerCosmeticsSerializer : MelodiaSerializer<PlayerCosmetics>() {
 
     }
 
-    override val builder: Builder<PlayerCosmetics> = PlayerCosmeticsBuilder()
+    override fun getBuilder(): Builder<PlayerCosmetics> = PlayerCosmeticsBuilder()
+
     override val steps: Array<SerializerElement<*, PlayerCosmetics>> = arrayOf(
         SerializerElement("nickname", String.serializer().nullable, { settings -> settings.nickname.nickname }, { value, settings -> (settings as PlayerCosmeticsBuilder).nickname = NicknameModifier(value) }),
         SerializerElement("connectionMessage", Int.serializer(), { settings -> settings.connectionMessage.ordinal }, { value, settings -> (settings as PlayerCosmeticsBuilder).connectionMessage = ConnectionMessages.entries[value] }),

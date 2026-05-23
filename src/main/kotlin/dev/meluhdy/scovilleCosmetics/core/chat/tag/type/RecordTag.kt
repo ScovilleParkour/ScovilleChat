@@ -27,7 +27,7 @@ object RecordTagSerializer : ChatTagSerializer<RecordTag>() {
 
     }
 
-    override val builder: Builder<RecordTag> = RecordTagBuilder()
+    override fun getBuilder(): Builder<RecordTag> = RecordTagBuilder()
 
     override val steps: Array<SerializerElement<*, RecordTag>> = arrayOf(
         SerializerElement("course", String.serializer(), { it.uuid.toString() }, { element, builder -> (builder as RecordTagBuilder).course = UUID.fromString(element) })

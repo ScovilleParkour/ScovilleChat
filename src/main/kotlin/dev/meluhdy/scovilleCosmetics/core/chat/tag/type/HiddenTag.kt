@@ -20,7 +20,7 @@ object HiddenTagSerializer : ChatTagSerializer<HiddenTag>() {
 
     }
 
-    override val builder: Builder<HiddenTag> = HiddenTagBuilder()
+    override fun getBuilder(): Builder<HiddenTag> = HiddenTagBuilder()
 
     override val steps: Array<SerializerElement<*, HiddenTag>> = arrayOf()
 

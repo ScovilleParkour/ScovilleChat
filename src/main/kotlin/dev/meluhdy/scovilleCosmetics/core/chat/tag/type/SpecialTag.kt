@@ -25,7 +25,7 @@ object SpecialTagSerializer : ChatTagSerializer<SpecialTag>() {
 
     }
 
-    override val builder: Builder<SpecialTag> = SpecialTagBuilder()
+    override fun getBuilder(): Builder<SpecialTag> = SpecialTagBuilder()
 
     override val steps: Array<SerializerElement<*, SpecialTag>> = arrayOf(
         SerializerElement("descTransId", String.serializer(), { it.descTransId }, { element, builder -> (builder as SpecialTagBuilder).descTransId = element })

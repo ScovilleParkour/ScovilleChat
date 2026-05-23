@@ -25,7 +25,7 @@ object RankTagSerializer : ChatTagSerializer<RankTag>() {
 
     }
 
-    override val builder: Builder<RankTag> = RankTagBuilder()
+    override fun getBuilder(): Builder<RankTag> = RankTagBuilder()
 
     override val steps: Array<SerializerElement<*, RankTag>> = arrayOf(
         SerializerElement("descTransId", String.serializer(), { it.descTransId }, { element, builder -> (builder as RankTagBuilder).descTransId = element })
