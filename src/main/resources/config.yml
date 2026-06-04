@@ -1,0 +1,9 @@
+# -------------
+# - SAVE DATA -
+# -------------
+
+# The folder to store tag data in
+tag_folder: "tags"
+
+# The folder to store player data in
+player_folder: "players"

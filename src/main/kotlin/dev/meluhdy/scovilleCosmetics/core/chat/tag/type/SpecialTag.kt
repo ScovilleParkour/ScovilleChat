@@ -9,7 +9,7 @@ import kotlinx.serialization.builtins.serializer
 import org.bukkit.entity.Player
 import java.util.UUID
 
-class SpecialTag(id: String, tag: String, val descTransId: String, uuid: UUID = UUID.randomUUID()) : ChatTag(id, tag, TagType.SPECIAL, uuid) {
+class SpecialTag(id: String, tag: String, val descTransId: String, uuid: UUID = UUID.randomUUID(), timeCreated: Long = System.currentTimeMillis()) : ChatTag(id, tag, TagType.SPECIAL, uuid, timeCreated) {
 
     override fun getDesc(p: Player): String = TextUtils.translate(ScovilleCosmetics.plugin, descTransId, p.locale())
 
@@ -21,13 +21,13 @@ object SpecialTagSerializer : ChatTagSerializer<SpecialTag>() {
 
         var descTransId: String = ""
 
-        override fun build(): SpecialTag = SpecialTag(id, tag, descTransId, uuid)
+        override fun build(): SpecialTag = SpecialTag(id, tag, descTransId, uuid, timeCreated)
 
     }
 
     override fun getBuilder(): Builder<SpecialTag> = SpecialTagBuilder()
 
-    override val steps: Array<SerializerElement<*, SpecialTag>> = arrayOf(
+    override val extraSteps: Array<SerializerElement<*, SpecialTag>> = arrayOf(
         SerializerElement("descTransId", String.serializer(), { it.descTransId }, { element, builder -> (builder as SpecialTagBuilder).descTransId = element })
     )
 

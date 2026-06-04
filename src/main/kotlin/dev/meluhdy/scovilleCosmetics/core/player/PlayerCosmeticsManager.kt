@@ -2,16 +2,18 @@ package dev.meluhdy.scovilleCosmetics.core.player
 
 import dev.meluhdy.melodia.manager.MelodiaSavingManager
 import dev.meluhdy.melodia.utils.FileUtils
+import dev.meluhdy.melodia.utils.FileUtils.requireString
 import dev.meluhdy.scoville.Scoville
 import dev.meluhdy.scovilleCosmetics.ScovilleCosmetics
 import kotlinx.serialization.json.JsonElement
+import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.entity.Player
 import java.io.File
 
 object PlayerCosmeticsManager : MelodiaSavingManager<PlayerCosmetics>() {
 
     val baseFolder: String
-        get() = FileUtils.getFile(ScovilleCosmetics.plugin, "players").absolutePath
+        get() = FileUtils.getFile(ScovilleCosmetics.plugin, (Scoville.plugin.config as YamlConfiguration).requireString("player_folder")).absolutePath
 
     fun get(p: Player): PlayerCosmetics? = get(p.uniqueId)
 

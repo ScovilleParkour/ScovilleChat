@@ -18,7 +18,7 @@ object PlayerCosmeticsSerializer : MelodiaSerializer<PlayerCosmetics>() {
         var connectionMessage: ConnectionMessages = ConnectionMessages.DEFAULT
         var nickname: NicknameModifier = NicknameModifier(null)
         var chatColor: ChatColorModifier = ChatColorModifier(ChatColorModifier.ChatColor.WHITE)
-        var tag: PlayerCosmetics.TagSelector? = null
+        var tag: String? = null
 
         override fun build(): PlayerCosmetics {
             val out = PlayerCosmetics(uuid)
@@ -37,7 +37,7 @@ object PlayerCosmeticsSerializer : MelodiaSerializer<PlayerCosmetics>() {
         SerializerElement("nickname", String.serializer().nullable, { settings -> settings.nickname.nickname }, { value, settings -> (settings as PlayerCosmeticsBuilder).nickname = NicknameModifier(value) }),
         SerializerElement("connectionMessage", Int.serializer(), { settings -> settings.connectionMessage.ordinal }, { value, settings -> (settings as PlayerCosmeticsBuilder).connectionMessage = ConnectionMessages.entries[value] }),
         SerializerElement("chatColor", Int.serializer(), { settings -> settings.chatColor.chatColor.ordinal }, { value, settings -> (settings as PlayerCosmeticsBuilder).chatColor = ChatColorModifier(ChatColorModifier.ChatColor.entries[value]) }),
-        SerializerElement("tag", MapSerializer(String.serializer(), String.serializer()).nullable, { settings -> settings.tag?.let { mapOf("id" to it.tagId, "type" to it.type.name) } }, { value, settings -> (settings as PlayerCosmeticsBuilder).tag = value?.let { val id = it["id"]; val type = it["type"]; if (id == null || type == null) { null } else { PlayerCosmetics.TagSelector(id, ChatTag.TagType.valueOf(type)) } } })
+        SerializerElement("tag", String.serializer().nullable, { settings -> settings.tag }, { value, settings -> (settings as PlayerCosmeticsBuilder).tag = value })
     )
 
 }

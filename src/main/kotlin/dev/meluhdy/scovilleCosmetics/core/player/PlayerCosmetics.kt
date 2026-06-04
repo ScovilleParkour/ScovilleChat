@@ -11,15 +11,13 @@ import java.util.UUID
 
 class PlayerCosmetics(uuid: UUID) : MelodiaItem(uuid) {
 
-    data class TagSelector(val tagId: String, val type: ChatTag.TagType)
-
     constructor(p: Player) : this(p.uniqueId)
 
-    var tag: TagSelector? = null
+    var tag: String? = null
     var nickname: NicknameModifier = NicknameModifier(null)
     var connectionMessage: ConnectionMessages = ConnectionMessages.DEFAULT
     var chatColor: ChatColorModifier = ChatColorModifier(ChatColorModifier.ChatColor.WHITE)
 
-    fun getTag(): ChatTag? = tag?.let { TagManager.get { t -> t.id == it.tagId } }
+    fun getTag(): ChatTag? = tag?.let { TagManager.get { t -> t.id == it } }
 
 }

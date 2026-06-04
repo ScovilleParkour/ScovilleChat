@@ -7,7 +7,7 @@ import kotlinx.serialization.builtins.serializer
 import org.bukkit.entity.Player
 import java.util.UUID
 
-abstract class ChatTag(val id: String, val tag: String, val type: TagType, uuid: UUID = UUID.randomUUID()) : MelodiaItem(uuid) {
+abstract class ChatTag(val id: String, val tag: String, val type: TagType, uuid: UUID = UUID.randomUUID(), val timeCreated: Long = System.currentTimeMillis()) : MelodiaItem(uuid) {
 
     enum class TagType(val id: String) {
         RANK    ("rank"),
@@ -46,13 +46,24 @@ abstract class ChatTagSerializer<T : ChatTag> : MelodiaSerializer<T>() {
         var id: String = ""
         var tag: String = ""
         var type: ChatTag.TagType = ChatTag.TagType.RANK
+        var timeCreated: Long = 0
 
     }
 
-    override val steps: Array<SerializerElement<*, T>> = arrayOf(
-        SerializerElement("id", String.serializer(), { it.id }, { value, builder -> (builder as ChatTagBuilder).id = value }),
-        SerializerElement("tag", String.serializer(), { it.tag }, { value, builder -> (builder as ChatTagBuilder).tag = value }),
-        SerializerElement("type", Int.serializer(), { it.type.ordinal }, { value, builder -> (builder as ChatTagBuilder).type = ChatTag.TagType.entries[value] }),
-    )
+    override val steps: Array<SerializerElement<*, T>>
+        get() {
+            val out = arrayListOf<SerializerElement<*, T>>(
+                SerializerElement("id", String.serializer(), { it.id }, { value, builder -> (builder as ChatTagBuilder).id = value }),
+                SerializerElement("tag", String.serializer(), { it.tag }, { value, builder -> (builder as ChatTagBuilder).tag = value }),
+                SerializerElement("type", Int.serializer(), { it.type.ordinal }, { value, builder -> (builder as ChatTagBuilder).type = ChatTag.TagType.entries[value] }),
+                SerializerElement("timeCreated", Long.serializer(), { it.timeCreated }, { value, builder -> (builder as ChatTagBuilder).timeCreated = value }),
+            )
+
+            out.addAll(extraSteps)
+
+            return out.toTypedArray()
+        }
+
+    abstract val extraSteps: Array<SerializerElement<*, T>>
 
 }

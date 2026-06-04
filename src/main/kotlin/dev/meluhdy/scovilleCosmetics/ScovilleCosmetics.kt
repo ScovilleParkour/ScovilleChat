@@ -11,6 +11,7 @@ import dev.meluhdy.scovilleCosmetics.core.chat.tag.TagManager
 import dev.meluhdy.scovilleCosmetics.core.player.PlayerCosmeticsManager
 import dev.meluhdy.scovilleCosmetics.listener.HotbarListener
 import dev.meluhdy.scovilleCosmetics.listener.MessageListener
+import dev.meluhdy.scovilleCosmetics.listener.TagListener
 import org.bukkit.event.Listener
 import java.util.Locale
 
@@ -33,7 +34,8 @@ class ScovilleCosmetics : MelodiaPlugin() {
     )
     override val listeners: Array<Listener> = arrayOf(
         MessageListener,
-        HotbarListener
+        HotbarListener,
+        TagListener
     )
     override val translationFolder: TranslationFolder = TranslationFolder("lang", Locale.of("en"))
     override val logger: ConsoleLogger = ConsoleLogger("ScovilleCosmetics", LoggingUtils.ConsoleLevel.DEBUG)

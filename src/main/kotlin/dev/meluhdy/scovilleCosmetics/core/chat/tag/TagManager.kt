@@ -2,6 +2,7 @@ package dev.meluhdy.scovilleCosmetics.core.chat.tag
 
 import dev.meluhdy.melodia.manager.MelodiaSavingManager
 import dev.meluhdy.melodia.utils.FileUtils
+import dev.meluhdy.melodia.utils.FileUtils.requireString
 import dev.meluhdy.scoville.Scoville
 import dev.meluhdy.scoville.core.course.CourseManager
 import dev.meluhdy.scovilleCosmetics.ScovilleCosmetics
@@ -23,7 +24,9 @@ import kotlinx.serialization.json.int
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import org.bukkit.Bukkit
+import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
+import kotlin.io.path.Path
 
 object TagManager : MelodiaSavingManager<ChatTag>() {
 
@@ -56,7 +59,7 @@ object TagManager : MelodiaSavingManager<ChatTag>() {
     fun get(tagId: String) = get { it.id == tagId }
 
     val baseFolder: String
-        get() = FileUtils.getFile(ScovilleCosmetics.plugin, "tags").absolutePath
+        get() = FileUtils.getFile(ScovilleCosmetics.plugin, (ScovilleCosmetics.plugin.config as YamlConfiguration).requireString("tag_folder")).absolutePath
 
     override fun load() {
         super.load()
@@ -76,9 +79,9 @@ object TagManager : MelodiaSavingManager<ChatTag>() {
     override val savingObjects: MutableSet<ChatTag>
         get() = getAll().filter { it is CourseTag || it is HiddenTag }.toMutableSet()
 
-    override fun getFile(obj: ChatTag): File = File(baseFolder, "${obj.id}.json")
+    override fun getFile(obj: ChatTag): File = Path(baseFolder, obj.type.name, "${obj.id}.json").toFile()
 
-    override fun loadSaves(): Array<File> = File(baseFolder).listFiles() ?: arrayOf()
+    override fun loadSaves(): Array<File> = File(baseFolder).walkTopDown().toCollection(ArrayList()).toTypedArray()
 
     override fun serializeObject(obj: ChatTag): JsonElement = when (obj.type) {
         ChatTag.TagType.RANK -> serializer.encodeToJsonElement(RankTagSerializer, obj as RankTag)

@@ -11,7 +11,7 @@ import kotlinx.serialization.builtins.serializer
 import org.bukkit.entity.Player
 import java.util.UUID
 
-class CourseTag(id: String, tag: String, val course: UUID?, uuid: UUID = UUID.randomUUID()) : ChatTag(id, tag, TagType.COURSE, uuid) {
+class CourseTag(id: String, tag: String, val course: UUID?, uuid: UUID = UUID.randomUUID(), timeCreated: Long = System.currentTimeMillis()) : ChatTag(id, tag, TagType.COURSE, uuid, timeCreated) {
 
     override fun getDesc(p: Player): String {
         if (course == null) {
@@ -28,13 +28,13 @@ object CourseTagSerializer : ChatTagSerializer<CourseTag>() {
 
         var course: UUID? = null
 
-        override fun build(): CourseTag = CourseTag(id, tag, course, uuid)
+        override fun build(): CourseTag = CourseTag(id, tag, course, uuid, timeCreated)
 
     }
 
     override fun getBuilder(): Builder<CourseTag> = CourseTagBuilder()
 
-    override val steps: Array<SerializerElement<*, CourseTag>> = arrayOf(
+    override val extraSteps: Array<SerializerElement<*, CourseTag>> = arrayOf(
         SerializerElement("course", String.serializer().nullable, { it.course?.toString() }, { element, builder -> (builder as CourseTagBuilder).course = element?.let { UUID.fromString(it) } })
     )
 
