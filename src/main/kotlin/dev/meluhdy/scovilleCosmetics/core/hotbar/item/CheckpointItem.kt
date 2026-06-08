@@ -1,11 +1,10 @@
 package dev.meluhdy.scovilleCosmetics.core.hotbar.item
 
-import dev.meluhdy.melodia.utils.TextUtils
+import dev.meluhdy.melodia.utils.sendMessage
 import dev.meluhdy.scoville.Scoville
 import dev.meluhdy.scoville.core.parkourer.ParkourerManager
 import dev.meluhdy.scoville.event.event.GotoCheckpointEvent
 import dev.meluhdy.scovilleCosmetics.core.hotbar.ScovilleHotbarItem
-import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 
@@ -15,10 +14,15 @@ class CheckpointItem(p: Player, item: ItemStack, color: Char) : ScovilleHotbarIt
         val parkourer = ParkourerManager.get(p) ?: return
         val course = parkourer.getPlayingCourse()
         if (course == null) {
-            p.sendMessage(TextUtils.translate(Scoville.plugin, "chat.checkpoint.not_playing", p.locale()))
+            p.sendMessage(Scoville.plugin, "chat.checkpoint.not_playing")
             return
         }
-        parkourer.getCheckpoint(course)?.let { GotoCheckpointEvent(p, it).callEvent() }
+        val checkpoint = parkourer.getCheckpoint(course)
+        if (checkpoint == null) {
+            p.sendMessage(Scoville.plugin, "chat.checkpoint.no_cp")
+            return
+        }
+        GotoCheckpointEvent(p, checkpoint).callEvent()
     }
 
 }

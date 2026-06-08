@@ -81,7 +81,7 @@ object TagManager : MelodiaSavingManager<ChatTag>() {
 
     override fun getFile(obj: ChatTag): File = Path(baseFolder, obj.type.name, "${obj.id}.json").toFile()
 
-    override fun loadSaves(): Array<File> = File(baseFolder).walkTopDown().toCollection(ArrayList()).toTypedArray()
+    override fun loadSaves(): Array<File> = File(baseFolder).walkTopDown().filter { it.isFile }.toList().toTypedArray()
 
     override fun serializeObject(obj: ChatTag): JsonElement = when (obj.type) {
         ChatTag.TagType.RANK -> serializer.encodeToJsonElement(RankTagSerializer, obj as RankTag)

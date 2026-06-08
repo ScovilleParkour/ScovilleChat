@@ -2,6 +2,7 @@ package dev.meluhdy.scovilleCosmetics.core.chat
 
 import dev.meluhdy.melodia.utils.TextUtils
 import dev.meluhdy.melodia.utils.fromLegacyMessage
+import dev.meluhdy.melodia.utils.sendMessage
 import dev.meluhdy.scovilleCosmetics.ScovilleCosmetics
 import org.bukkit.Bukkit
 import kotlin.random.Random
@@ -16,7 +17,7 @@ object AnnouncementManager {
                 random = Random.nextInt(0, messages.size)
             }
             val message = messages[random]
-            it.sendMessage(TextUtils.translate(ScovilleCosmetics.plugin, message.id, it.locale(), message.args).fromLegacyMessage())
+            it.sendMessage(ScovilleCosmetics.plugin, message.id, *message.args)
         }
     }
 
