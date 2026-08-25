@@ -80,9 +80,9 @@ object MessageListener : Listener {
         }
 
         val preamble = messageArray.values.joinToString("")
-        event.message(message.fromMiniMessage())
-        TextUtils.broadcastChat((preamble + message).fromMiniMessage())
-        event.isCancelled = true
+        event.renderer { _, _, _, _ ->
+            (preamble + message).fromMiniMessage()
+        }
     }
 
 }

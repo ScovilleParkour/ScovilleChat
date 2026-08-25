@@ -4,7 +4,7 @@ prefix: ScovilleCosmetics
 version: '${version}'
 
 main: dev.meluhdy.scovilleCosmetics.ScovilleCosmetics
-api-version: '1.21.11'
+api-version: '26.2'
 load: POSTWORLD
 
 authors: [meluwudy]
